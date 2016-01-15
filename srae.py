@@ -14,7 +14,6 @@ HDR = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.
 
 URL = 'http://dle.rae.es/srv/fetch/?w='
 
-
 def get_html(url, headers):
 	req = urllib2.Request(url, headers=headers)
 	r = urllib2.urlopen(req)
@@ -22,15 +21,12 @@ def get_html(url, headers):
 	return page
 
 
-def get_means(page):
-	return None
-
-def get_all_key_words(page):
-	return None
-
 if __name__ == '__main__':
 	p = sys.argv
 	if len(p) > 1:
+		f = open('output.html', 'w')
 		final_url = URL + p[1]	
 		HDR['Referer'] = final_url
-		print get_html(final_url, HDR) 
+		f.write(get_html(final_url, HDR)) 
+	else: 
+		print 'No word!'
